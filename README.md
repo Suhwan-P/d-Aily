@@ -26,6 +26,9 @@ npx expo start
 터미널에 뜬 QR 코드를 Expo Go 앱으로 스캔하면 됩니다.
 웹에서 확인하려면 서버 실행 후 터미널에서 `w` 키를 누르면 됩니다.
 
+<img width="1920" height="1080" alt="phone_temp" src="https://github.com/user-attachments/assets/37378d83-0bdb-4365-97f9-ef3432bfe1d2" />
+
+
 ### 주의사항
 
 - 폰의 **Expo Go 앱 버전**과 프로젝트의 **Expo SDK 버전**이 다르면
