@@ -5,6 +5,8 @@
 사용자는 한 단어~한 문장으로 답하면 하루 요약을 만들어줍니다.
 소셜 기능 없이 개인 디바이스에만 데이터를 저장하는 것을 목표로 합니다.
 
+<img width="1536" height="1024" alt="d-aily_logoTemp" src="https://github.com/user-attachments/assets/2d2af2c5-2f5b-44d6-b497-7ada53cdd314" />
+
 ## 개발 환경
 
 - Node.js: v24.18.0
