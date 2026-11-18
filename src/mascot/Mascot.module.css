@@ -1,0 +1,67 @@
+/* 왜무새 움직임: 기준점을 viewBox 좌표로 고정해서 크기가 달라도 눈·몸이 어긋나지 않게 */
+.bob,
+.cheer,
+.sad,
+.think,
+.floatQ {
+  transform-box: view-box;
+  transform-origin: 60px 120px;
+}
+
+.bob {
+  animation: bob 2.2s ease-in-out infinite;
+}
+
+.cheer {
+  animation: hop 0.6s ease-in-out infinite;
+}
+
+.sad {
+  transform: translateY(2px);
+}
+
+.think {
+  animation: tilt 2.4s ease-in-out infinite;
+}
+
+.floatQ {
+  transform-origin: 100px 16px;
+  animation: floatQ 1.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes hop {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes floatQ {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bob,
+  .cheer,
+  .think,
+  .floatQ {
+    animation: none;
+  }
+}

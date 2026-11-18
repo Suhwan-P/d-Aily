@@ -1,0 +1,34 @@
+{
+  "name": "wae-party",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "왜무새 파티 — 진짜 이유를 찾아라 (d-Aily 멀티 데모)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "concurrently -k -n server,client \"tsx watch server/index.ts\" \"vite\"",
+    "build": "tsc -b && vite build",
+    "build:solo": "vite build --mode solo",
+    "start": "tsx server/index.ts",
+    "test": "tsx scripts/test-multi.ts"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "tsx": "^4.20.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io-client": "^4.8.1",
+    "typescript": "~5.9.0",
+    "vite": "^7.0.0",
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}
