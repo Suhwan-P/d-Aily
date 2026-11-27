@@ -84,6 +84,12 @@ export function Home({ name, setName, onReroll, initialCode, busy, error, soloOn
         {soloOnly && <p className="hint">미리보기 버전이에요. 친구와 하는 온라인 방은 배포한 주소에서 열 수 있어요.</p>}
       </section>
 
+      {!soloOnly && (
+        <a className="btn soft" href="/intro.html" style={{ textAlign: "center", textDecoration: "none" }}>
+          🪑 처음 만난 사이라면 → 왜무새 테이블 (자기소개)
+        </a>
+      )}
+
       <section className="howto">
         <h2>이렇게 놀아요</h2>
         <ol>

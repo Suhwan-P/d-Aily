@@ -7,6 +7,7 @@ import { randomBytes } from "node:crypto";
 import { Server, type Socket } from "socket.io";
 import { Game } from "../shared/engine";
 import type { WaeQuestion } from "../shared/questions";
+import { setupIntro } from "./intro";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -26,6 +27,8 @@ const io = new Server(http, { cors: { origin: process.env.CORS_ORIGIN?.split(","
 const here = path.dirname(fileURLToPath(import.meta.url));
 const clientDir = path.resolve(here, "../dist/client");
 app.get("/healthz", (_req, res) => res.json({ ok: true, rooms: rooms.size }));
+// 왜무새 테이블(자기소개 모드): /intro 로 들어와도 intro.html 로
+app.get(["/intro", "/intro/"], (req, res) => res.redirect(302, "/intro.html" + (req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "")));
 app.use(express.static(clientDir, { maxAge: "1h", index: false }));
 app.get(/.*/, (_req, res) => res.sendFile(path.join(clientDir, "index.html")));
 
@@ -92,9 +95,10 @@ function createRoom() {
 }
 
 function bind(socket: Socket, room: Room, playerId: string) {
+  // 새 소켓을 먼저 등록해야, 옛 소켓이 끊길 때 '나갔다'로 처리되지 않는다 (방장이 바뀌는 문제)
   const old = room.sockets.get(playerId);
-  if (old && old.id !== socket.id) old.disconnect(true);
   room.sockets.set(playerId, socket);
+  if (old && old.id !== socket.id) old.disconnect(true);
   socket.data.code = room.game.code;
   socket.data.playerId = playerId;
   room.game.setOnline(playerId, true);
@@ -180,6 +184,8 @@ setInterval(() => {
     }
   }
 }, 60_000).unref();
+
+setupIntro(io);
 
 http.listen(PORT, () => {
   console.log(`왜무새 파티 서버: http://localhost:${PORT}  (AI 가짜: ${ANTHROPIC_API_KEY ? AI_MODEL : "문제 은행"})`);

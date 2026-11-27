@@ -4,13 +4,16 @@
   "version": "0.1.0",
   "type": "module",
   "description": "왜무새 파티 — 진짜 이유를 찾아라 (d-Aily 멀티 데모)",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "concurrently -k -n server,client \"tsx watch server/index.ts\" \"vite\"",
     "build": "tsc -b && vite build",
     "build:solo": "vite build --mode solo",
     "start": "tsx server/index.ts",
-    "test": "tsx scripts/test-multi.ts"
+    "test": "tsx scripts/test-multi.ts",
+    "test:intro": "tsx scripts/test-intro.ts"
   },
   "dependencies": {
     "express": "^5.1.0",
